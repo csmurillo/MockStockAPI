@@ -2,7 +2,7 @@ const EStocksDay=require('./DayMovementStocks.json');
 const EStocksWeek=require('./WeekMovementStocks.json');
 const EStocksMonth=require('./MonthMovementStocks.json');
 
-function listCLivePrice(){
+function listELivePrice(){
     
     let liveTime=new Date();
     let liveHour=parseInt(liveTime.getHours());
@@ -70,4 +70,4 @@ function listEStocksMonthHistory(){
     return EStocksMonth;
 }
 
-module.exports={ listCLivePrice, listEStocksDayHistory, listEStocksWeekHistory, listEStocksMonthHistory };
+module.exports={ listELivePrice, listEStocksDayHistory, listEStocksWeekHistory, listEStocksMonthHistory };

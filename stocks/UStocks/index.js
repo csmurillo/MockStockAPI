@@ -1,13 +1,13 @@
-const DStocksDay=require('./DayMovementStocks.json');
-const DStocksWeek=require('./WeekMovementStocks.json');
-const DStocksMonth=require('./MonthMovementStocks.json');
+const UStocksDay=require('./DayMovemenUStocks.json');
+const UStocksWeek=require('./WeekMovemenUStocks.json');
+const UStocksMonth=require('./MonthMovemenUStocks.json');
 
-function listDLivePrice(){
+function listULivePrice(){
     
     let liveTime=new Date();
     let liveHour=parseInt(liveTime.getHours());
     let liveMinutes=parseInt(liveTime.getMinutes());
-    let stockValues=DStocksDay.values;
+    let stockValues=UStocksDay.values;
 
     let livePriceData={
         price:'',
@@ -36,15 +36,15 @@ function listDLivePrice(){
     return livePriceData;
 }
 
-function listDStocksDayHistory(){
+function listUStocksDayHistory(){
     let liveTime=new Date();
     let liveHour=parseInt(liveTime.getHours());
     let liveMinutes=parseInt(liveTime.getMinutes());
 
-    let stockValues=DStocksDay.values;
+    let stockValues=UStocksDay.values;
 
     let currentLivePrice={
-        "meta":{"symbol":"A"},
+        "meta":{"symbol":"T"},
         "values":[]
     }
 
@@ -58,16 +58,13 @@ function listDStocksDayHistory(){
             currentLivePrice.values.push({datetime:stockValues[i].datetime,open:stockValues[i].open})
         }
     }
-    // console.log('currentLivePrice');
-    // console.log(currentLivePrice);
-    // console.log('----------------');
     return currentLivePrice;
 }
-function listDStocksWeekHistory(){
-    return DStocksWeek;
+function listUStocksWeekHistory(){
+    return UStocksWeek;
 }
-function listDStocksMonthHistory(){
-    return DStocksMonth;
+function listUStocksMonthHistory(){
+    return UStocksMonth;
 }
 
-module.exports={ listDLivePrice, listDStocksDayHistory, listDStocksWeekHistory, listDStocksMonthHistory };
+module.exports={ listULivePrice, listUStocksDayHistory, listUStocksWeekHistory, listUStocksMonthHistory };
