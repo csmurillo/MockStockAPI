@@ -1,29 +1,29 @@
 const {listALivePrice,listAStocksDayHistory,listAStocksWeekHistory,listAStocksMonthHistory}=require('./AStocks');
-const {listBStocks,listBLivePrice}=require('./BStocks');
-const {listCStocks,listCLivePrice}=require('./CStocks');
-const {listDStocks,listDLivePrice}=require('./DStocks');
-const {listEStocks,listELivePrice}=require('./EStocks');
-const {listFStocks,listFLivePrice}=require('./FStocks');
-const {listGStocks,listGLivePrice}=require('./GStocks');
-const {listHStocks,listHLivePrice}=require('./HStocks');
-const {listIStocks,listILivePrice}=require('./IStocks');
-const {listJStocks,listJLivePrice}=require('./JStocks');
-const {listKStocks,listKLivePrice}=require('./KStocks');
-const {listLStocks,listLLivePrice}=require('./LStocks');
-const {listMStocks,listMLivePrice}=require('./MStocks');
-const {listNStocks,listNLivePrice}=require('./NStocks');
-const {listOStocks,listOLivePrice}=require('./OStocks');
-const {listPStocks,listPLivePrice}=require('./PStocks');
-const {listQStocks,listQLivePrice}=require('./QStocks');
-const {listRStocks,listRLivePrice}=require('./RStocks');
-const {listSStocks,listSLivePrice}=require('./SStocks');
-const {listTStocks,listTLivePrice}=require('./TStocks');
-const {listUStocks,listULivePrice}=require('./UStocks');
-const {listVStocks,listVLivePrice}=require('./VStocks');
-const {listWStocks,listWLivePrice}=require('./WStocks');
-const {listXStocks,listXLivePrice}=require('./XStocks');
-const {listYStocks,listYLivePrice}=require('./YStocks');
-const {listZStocks,listZLivePrice}=require('./ZStocks');
+const {listBLivePrice,listBStocksDayHistory,listBStocksWeekHistory,listBStocksMonthHistory}=require('./BStocks');
+const {listCLivePrice,listCStocksDayHistory,listCStocksWeekHistory,listCStocksMonthHistory}=require('./CStocks');
+const {listDLivePrice,listDStocksDayHistory,listDStocksWeekHistory,listDStocksMonthHistory}=require('./DStocks');
+const {listELivePrice,listEStocksDayHistory,listEStocksWeekHistory,listEStocksMonthHistory}=require('./EStocks');
+const {listFLivePrice,listFStocksDayHistory,listFStocksWeekHistory,listFStocksMonthHistory}=require('./FStocks');
+const {listGLivePrice,listGStocksDayHistory,listGStocksWeekHistory,listGStocksMonthHistory}=require('./GStocks');
+const {listHLivePrice,listHStocksDayHistory,listHStocksWeekHistory,listHStocksMonthHistory}=require('./HStocks');
+const {listILivePrice,listIStocksDayHistory,listIStocksWeekHistory,listIStocksMonthHistory}=require('./IStocks');
+const {listJLivePrice,listJStocksDayHistory,listJStocksWeekHistory,listJStocksMonthHistory}=require('./JStocks');
+const {listKLivePrice,listKStocksDayHistory,listKStocksWeekHistory,listKStocksMonthHistory}=require('./KStocks');
+const {listLLivePrice,listLStocksDayHistory,listLStocksWeekHistory,listLStocksMonthHistory}=require('./LStocks');
+const {listMLivePrice,listMStocksDayHistory,listMStocksWeekHistory,listMStocksMonthHistory}=require('./MStocks');
+const {listNLivePrice,listNStocksDayHistory,listNStocksWeekHistory,listNStocksMonthHistory}=require('./NStocks');
+const {listOLivePrice,listOStocksDayHistory,listOStocksWeekHistory,listOStocksMonthHistory}=require('./OStocks');
+const {listPLivePrice,listPStocksDayHistory,listPStocksWeekHistory,listPStocksMonthHistory}=require('./PStocks');
+const {listQLivePrice,listQStocksDayHistory,listQStocksWeekHistory,listQStocksMonthHistory}=require('./QStocks');
+const {listRLivePrice,listRStocksDayHistory,listRStocksWeekHistory,listRStocksMonthHistory}=require('./RStocks');
+const {listSLivePrice,listSStocksDayHistory,listSStocksWeekHistory,listSStocksMonthHistory}=require('./SStocks');
+const {listTLivePrice,listTStocksDayHistory,listTStocksWeekHistory,listTStocksMonthHistory}=require('./TStocks');
+const {listULivePrice,listUStocksDayHistory,listUStocksWeekHistory,listUStocksMonthHistory}=require('./UStocks');
+const {listVLivePrice,listVStocksDayHistory,listVStocksWeekHistory,listVStocksMonthHistory}=require('./VStocks');
+const {listWLivePrice,listWStocksDayHistory,listWStocksWeekHistory,listWStocksMonthHistory}=require('./WStocks');
+const {listXLivePrice,listXStocksDayHistory,listXStocksWeekHistory,listXStocksMonthHistory}=require('./XStocks');
+const {listYLivePrice,listYStocksDayHistory,listYStocksWeekHistory,listYStocksMonthHistory}=require('./YStocks');
+const {listZLivePrice,listZStocksDayHistory,listZStocksWeekHistory,listZStocksMonthHistory}=require('./ZStocks');
 
 function getStockLivePrice(stockSymbol){
     // console.log('inside'+stockSymbol);
@@ -114,163 +114,243 @@ function getStocksDayMovement(stockSymbol){
         return listAStocksDayHistory();
     }
     else if(stockSymbol[0].toLowerCase()=='b'){
-        return listBStocks();
+        return listBStocksDayHistory();
     }
     else if(stockSymbol[0].toLowerCase()=='c'){
-        return listCStocks();
+        return listCStocksDayHistory();
     }
     else if(stockSymbol[0].toLowerCase()=='d'){
-        return listDStocks();
+        return listDStocksDayHistory();
     }
     else if(stockSymbol[0].toLowerCase()=='e'){
-        return listEStocks();
+        return listEStocksDayHistory();
     }
     else if(stockSymbol[0].toLowerCase()=='f'){
-        return listFStocks();
+        return listFStocksDayHistory();
     }
     else if(stockSymbol[0].toLowerCase()=='g'){
-        return listGStocks();
+        return listGStocksDayHistory();
     }
     else if(stockSymbol[0].toLowerCase()=='h'){
-        return listHStocks();
+        return listHStocksDayHistory();
     }
     else if(stockSymbol[0].toLowerCase()=='i'){
-        return listIStocks();
+        return listIStocksDayHistory();
     }
     else if(stockSymbol[0].toLowerCase()=='j'){
-        return listJStocks();
+        return listJStocksDayHistory();
     }
     else if(stockSymbol[0].toLowerCase()=='k'){
-        return listKStocks();
+        return listKStocksDayHistory();
     }
     else if(stockSymbol[0].toLowerCase()=='l'){
-        return listLStocks();
+        return listLStocksDayHistory();
     }
     else if(stockSymbol[0].toLowerCase()=='m'){
-        return listMStocks();
+        return listMStocksDayHistory();
     }
     else if(stockSymbol[0].toLowerCase()=='n'){
-        return listNStocks();
+        return listNStocksDayHistory();
     }
     else if(stockSymbol[0].toLowerCase()=='o'){
-        return listOStocks();
+        return listOStocksDayHistory();
     }
     else if(stockSymbol[0].toLowerCase()=='p'){
-        return listPStocks();
+        return listPStocksDayHistory();
     }
     else if(stockSymbol[0].toLowerCase()=='q'){
-        return listQStocks();
+        return listQStocksDayHistory();
     }
     else if(stockSymbol[0].toLowerCase()=='r'){
-        return listRStocks();
+        return listRStocksDayHistory();
     }
     else if(stockSymbol[0].toLowerCase()=='s'){
-        return listSStocks();
+        return listSStocksDayHistory();
     }
     else if(stockSymbol[0].toLowerCase()=='t'){
-        return listTStocks();
+        return listTStocksDayHistory();
     }
     else if(stockSymbol[0].toLowerCase()=='u'){
-        return listUStocks();
+        return listUStocksDayHistory();
     }
     else if(stockSymbol[0].toLowerCase()=='v'){
-        return listVStocks();
+        return listVStocksDayHistory();
     }
     else if(stockSymbol[0].toLowerCase()=='w'){
-        return listWStocks();
+        return listWStocksDayHistory();
     }
     else if(stockSymbol[0].toLowerCase()=='x'){
-        return listXStocks();
+        return listXStocksDayHistory();
     }
     else if(stockSymbol[0].toLowerCase()=='y'){
-        return listYStocks();
+        return listYStocksDayHistory();
     }
     else if(stockSymbol[0].toLowerCase()=='z'){
-        return listZStocks();
+        return listZStocksDayHistory();
     }
 }
-// function getStocksWeekMovement(stockSymbol){
-//     console.log('inside'+stockSymbol);
-//     if(stockSymbol[0].toLowerCase()=='a'){
-//         return listAStocksDayHistory();
-//     }
-//     else if(stockSymbol[0].toLowerCase()=='b'){
-//         return listBStocks();
-//     }
-//     else if(stockSymbol[0].toLowerCase()=='c'){
-//         return listCStocks();
-//     }
-//     else if(stockSymbol[0].toLowerCase()=='d'){
-//         return listDStocks();
-//     }
-//     else if(stockSymbol[0].toLowerCase()=='e'){
-//         return listEStocks();
-//     }
-//     else if(stockSymbol[0].toLowerCase()=='f'){
-//         return listFStocks();
-//     }
-//     else if(stockSymbol[0].toLowerCase()=='g'){
-//         return listGStocks();
-//     }
-//     else if(stockSymbol[0].toLowerCase()=='h'){
-//         return listHStocks();
-//     }
-//     else if(stockSymbol[0].toLowerCase()=='i'){
-//         return listIStocks();
-//     }
-//     else if(stockSymbol[0].toLowerCase()=='j'){
-//         return listJStocks();
-//     }
-//     else if(stockSymbol[0].toLowerCase()=='k'){
-//         return listKStocks();
-//     }
-//     else if(stockSymbol[0].toLowerCase()=='l'){
-//         return listLStocks();
-//     }
-//     else if(stockSymbol[0].toLowerCase()=='m'){
-//         return listMStocks();
-//     }
-//     else if(stockSymbol[0].toLowerCase()=='n'){
-//         return listNStocks();
-//     }
-//     else if(stockSymbol[0].toLowerCase()=='o'){
-//         return listOStocks();
-//     }
-//     else if(stockSymbol[0].toLowerCase()=='p'){
-//         return listPStocks();
-//     }
-//     else if(stockSymbol[0].toLowerCase()=='q'){
-//         return listQStocks();
-//     }
-//     else if(stockSymbol[0].toLowerCase()=='r'){
-//         return listRStocks();
-//     }
-//     else if(stockSymbol[0].toLowerCase()=='s'){
-//         return listSStocks();
-//     }
-//     else if(stockSymbol[0].toLowerCase()=='t'){
-//         return listTStocks();
-//     }
-//     else if(stockSymbol[0].toLowerCase()=='u'){
-//         return listUStocks();
-//     }
-//     else if(stockSymbol[0].toLowerCase()=='v'){
-//         return listVStocks();
-//     }
-//     else if(stockSymbol[0].toLowerCase()=='w'){
-//         return listWStocks();
-//     }
-//     else if(stockSymbol[0].toLowerCase()=='x'){
-//         return listXStocks();
-//     }
-//     else if(stockSymbol[0].toLowerCase()=='y'){
-//         return listYStocks();
-//     }
-//     else if(stockSymbol[0].toLowerCase()=='z'){
-//         return listZStocks();
-//     }
-// }
-// function getStocksMonthMovement(stockSymbol){
-
-// }
-module.exports={getStocksDayMovement,getStockLivePrice}
+// 
+function getStocksWeekMovement(stockSymbol){
+    console.log('inside'+stockSymbol);
+    if(stockSymbol[0].toLowerCase()=='a'){
+        return listAStocksWeekHistory();
+    }
+    else if(stockSymbol[0].toLowerCase()=='b'){
+        return listBStocksWeekHistory();
+    }
+    else if(stockSymbol[0].toLowerCase()=='c'){
+        return listCStocksWeekHistory();
+    }
+    else if(stockSymbol[0].toLowerCase()=='d'){
+        return listDStocksWeekHistory();
+    }
+    else if(stockSymbol[0].toLowerCase()=='e'){
+        return listEStocksWeekHistory();
+    }
+    else if(stockSymbol[0].toLowerCase()=='f'){
+        return listFStocksWeekHistory();
+    }
+    else if(stockSymbol[0].toLowerCase()=='g'){
+        return listGStocksWeekHistory();
+    }
+    else if(stockSymbol[0].toLowerCase()=='h'){
+        return listHStocksWeekHistory();
+    }
+    else if(stockSymbol[0].toLowerCase()=='i'){
+        return listIStocksWeekHistory();
+    }
+    else if(stockSymbol[0].toLowerCase()=='j'){
+        return listJStocksWeekHistory();
+    }
+    else if(stockSymbol[0].toLowerCase()=='k'){
+        return listKStocksWeekHistory();
+    }
+    else if(stockSymbol[0].toLowerCase()=='l'){
+        return listLStocksWeekHistory();
+    }
+    else if(stockSymbol[0].toLowerCase()=='m'){
+        return listMStocksWeekHistory();
+    }
+    else if(stockSymbol[0].toLowerCase()=='n'){
+        return listNStocksWeekHistory();
+    }
+    else if(stockSymbol[0].toLowerCase()=='o'){
+        return listOStocksWeekHistory();
+    }
+    else if(stockSymbol[0].toLowerCase()=='p'){
+        return listPStocksWeekHistory();
+    }
+    else if(stockSymbol[0].toLowerCase()=='q'){
+        return listQStocksWeekHistory();
+    }
+    else if(stockSymbol[0].toLowerCase()=='r'){
+        return listRStocksWeekHistory();
+    }
+    else if(stockSymbol[0].toLowerCase()=='s'){
+        return listSStocksWeekHistory();
+    }
+    else if(stockSymbol[0].toLowerCase()=='t'){
+        return listTStocksWeekHistory();
+    }
+    else if(stockSymbol[0].toLowerCase()=='u'){
+        return listUStocksWeekHistory();
+    }
+    else if(stockSymbol[0].toLowerCase()=='v'){
+        return listVStocksWeekHistory();
+    }
+    else if(stockSymbol[0].toLowerCase()=='w'){
+        return listWStocksWeekHistory();
+    }
+    else if(stockSymbol[0].toLowerCase()=='x'){
+        return listXStocksWeekHistory();
+    }
+    else if(stockSymbol[0].toLowerCase()=='y'){
+        return listYStocksWeekHistory();
+    }
+    else if(stockSymbol[0].toLowerCase()=='z'){
+        return listZStocksWeekHistory();
+    }
+}
+// 
+function getStocksMonthMovement(stockSymbol){
+    if(stockSymbol[0].toLowerCase()=='a'){
+        return listAStocksMonthHistory();
+    }
+    else if(stockSymbol[0].toLowerCase()=='b'){
+        return listBStocksMonthHistory();
+    }
+    else if(stockSymbol[0].toLowerCase()=='c'){
+        return listCStocksMonthHistory();
+    }
+    else if(stockSymbol[0].toLowerCase()=='d'){
+        return listDStocksMonthHistory();
+    }
+    else if(stockSymbol[0].toLowerCase()=='e'){
+        return listEStocksMonthHistory();
+    }
+    else if(stockSymbol[0].toLowerCase()=='f'){
+        return listFStocksMonthHistory();
+    }
+    else if(stockSymbol[0].toLowerCase()=='g'){
+        return listGStocksMonthHistory();
+    }
+    else if(stockSymbol[0].toLowerCase()=='h'){
+        return listHStocksMonthHistory();
+    }
+    else if(stockSymbol[0].toLowerCase()=='i'){
+        return listIStocksMonthHistory();
+    }
+    else if(stockSymbol[0].toLowerCase()=='j'){
+        return listJStocksMonthHistory();
+    }
+    else if(stockSymbol[0].toLowerCase()=='k'){
+        return listKStocksMonthHistory();
+    }
+    else if(stockSymbol[0].toLowerCase()=='l'){
+        return listLStocksMonthHistory();
+    }
+    else if(stockSymbol[0].toLowerCase()=='m'){
+        return listMStocksMonthHistory();
+    }
+    else if(stockSymbol[0].toLowerCase()=='n'){
+        return listNStocksMonthHistory();
+    }
+    else if(stockSymbol[0].toLowerCase()=='o'){
+        return listOStocksMonthHistory();
+    }
+    else if(stockSymbol[0].toLowerCase()=='p'){
+        return listPStocksMonthHistory();
+    }
+    else if(stockSymbol[0].toLowerCase()=='q'){
+        return listQStocksMonthHistory();
+    }
+    else if(stockSymbol[0].toLowerCase()=='r'){
+        return listRStocksMonthHistory();
+    }
+    else if(stockSymbol[0].toLowerCase()=='s'){
+        return listSStocksMonthHistory();
+    }
+    else if(stockSymbol[0].toLowerCase()=='t'){
+        return listTStocksMonthHistory();
+    }
+    else if(stockSymbol[0].toLowerCase()=='u'){
+        return listUStocksMonthHistory();
+    }
+    else if(stockSymbol[0].toLowerCase()=='v'){
+        return listVStocksMonthHistory();
+    }
+    else if(stockSymbol[0].toLowerCase()=='w'){
+        return listWStocksMonthHistory();
+    }
+    else if(stockSymbol[0].toLowerCase()=='x'){
+        return listXStocksMonthHistory();
+    }
+    else if(stockSymbol[0].toLowerCase()=='y'){
+        return listYStocksMonthHistory();
+    }
+    else if(stockSymbol[0].toLowerCase()=='z'){
+        return listZStocksMonthHistory();
+    }
+}
+// 
+module.exports={getStockLivePrice,getStocksDayMovement,getStocksWeekMovement,getStocksMonthMovement}

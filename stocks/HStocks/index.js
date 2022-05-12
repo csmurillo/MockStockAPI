@@ -1,6 +1,6 @@
-const HStocksDay=require('./DayMovementStocks.json');
-const HStocksWeek=require('./WeekMovementStocks.json');
-const HStocksMonth=require('./MonthMovementStocks.json');
+const HStocksDay=require('./DayMovement.json');
+const HStocksWeek=require('./WeekMovement.json');
+const HStocksMonth=require('./MonthMovement.json');
 
 function listHLivePrice(){
     

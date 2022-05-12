@@ -1,6 +1,6 @@
-const FStocksDay=require('./DayMovementStocks.json');
-const FStocksWeek=require('./WeekMovementStocks.json');
-const FStocksMonth=require('./MonthMovementStocks.json');
+const FStocksDay=require('./DayMovement.json');
+const FStocksWeek=require('./WeekMovement.json');
+const FStocksMonth=require('./MonthMovement.json');
 
 function listFLivePrice(){
     

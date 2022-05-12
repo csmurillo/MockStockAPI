@@ -3,7 +3,7 @@ const express = require('express');
 const router= express.Router();
 
 const {getStockInformation}=require('../helper/getStockInformation');
-const {getStocksDayMovement,getStockLivePrice}=require('../stocks');
+const {getStockLivePrice,getStocksDayMovement,getStocksWeekMovement,getStocksMonthMovement}=require('../stocks');
 
 router.get('/stockInformation',(req,res)=>{
     const stockSymbol=req.query.stock;
@@ -26,10 +26,10 @@ router.get('/stockDayHistory',(req,res)=>{
     res.json(getStocksDayMovement(req.query.stock));
 });
 router.get('stockWeekHistory',(req,res)=>{
-    res.json(getStocksDayMovement(req.query.stock));
+    res.json(getStocksWeekMovement(req.query.stock));
 });
 router.get('/stockMonthHistory',(req,res)=>{
-    res.json(getStocksDayMovement(req.query.stock));
+    res.json(getStocksMonthMovement(req.query.stock));
 });
 
 

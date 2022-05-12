@@ -1,6 +1,6 @@
-const UStocksDay=require('./DayMovemenUStocks.json');
-const UStocksWeek=require('./WeekMovemenUStocks.json');
-const UStocksMonth=require('./MonthMovemenUStocks.json');
+const UStocksDay=require('./DayMovemenStocks.json');
+const UStocksWeek=require('./WeekMovemenStocks.json');
+const UStocksMonth=require('./MonthMovemenStocks.json');
 
 function listULivePrice(){
     

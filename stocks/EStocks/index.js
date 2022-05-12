@@ -1,6 +1,6 @@
-const EStocksDay=require('./DayMovementStocks.json');
-const EStocksWeek=require('./WeekMovementStocks.json');
-const EStocksMonth=require('./MonthMovementStocks.json');
+const EStocksDay=require('./DayMovement.json');
+const EStocksWeek=require('./WeekMovement.json');
+const EStocksMonth=require('./MonthMovement.json');
 
 function listELivePrice(){
     

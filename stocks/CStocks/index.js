@@ -1,6 +1,6 @@
-const CStocksDay=require('./DayMovementStocks.json');
-const CStocksWeek=require('./WeekMovementStocks.json');
-const CStocksMonth=require('./MonthMovementStocks.json');
+const CStocksDay=require('./DayMovement.json');
+const CStocksWeek=require('./WeekMovement.json');
+const CStocksMonth=require('./MonthMovement.json');
 
 function listCLivePrice(){
     

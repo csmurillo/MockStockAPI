@@ -1,6 +1,6 @@
-const GStocksDay=require('./DayMovementStocks.json');
-const GStocksWeek=require('./WeekMovementStocks.json');
-const GStocksMonth=require('./MonthMovementStocks.json');
+const GStocksDay=require('./DayMovement.json');
+const GStocksWeek=require('./WeekMovement.json');
+const GStocksMonth=require('./MonthMovement.json');
 
 function listGLivePrice(){
     
