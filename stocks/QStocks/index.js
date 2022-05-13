@@ -1,6 +1,6 @@
-const QStocksDay=require('./DayMovementStocks.json');
-const QStocksWeek=require('./WeekMovementStocks.json');
-const QStocksMonth=require('./MonthMovementStocks.json');
+const QStocksDay=require('./DayMovement.json');
+const QStocksWeek=require('./WeekMovement.json');
+const QStocksMonth=require('./MonthMovement.json');
 
 function listQLivePrice(){
     
@@ -53,9 +53,16 @@ function listQStocksDayHistory(){
         let time=timeStr.split(':');
         let hour=parseInt(time[0]);
         let minutes=parseInt(time[1]);
-        liveHour=14;
-        if(hour<liveHour){
-            currentLivePrice.values.push({datetime:stockValues[i].datetime,open:stockValues[i].open})
+
+        if(hour<=liveHour){
+            if(hour==liveHour){
+                if(minutes<=liveMinutes){
+                    currentLivePrice.values.push({datetime:stockValues[i].datetime,open:stockValues[i].open})
+                }
+            }
+            else{
+                currentLivePrice.values.push({datetime:stockValues[i].datetime,open:stockValues[i].open})
+            }
         }
     }
     return currentLivePrice;

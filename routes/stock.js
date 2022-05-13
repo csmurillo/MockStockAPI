@@ -25,7 +25,7 @@ router.get('/stockLivePrice',(req,res)=>{
 router.get('/stockDayHistory',(req,res)=>{
     res.json(getStocksDayMovement(req.query.stock));
 });
-router.get('stockWeekHistory',(req,res)=>{
+router.get('/stockWeekHistory',(req,res)=>{
     res.json(getStocksWeekMovement(req.query.stock));
 });
 router.get('/stockMonthHistory',(req,res)=>{

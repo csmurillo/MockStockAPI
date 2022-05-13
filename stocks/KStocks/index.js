@@ -1,6 +1,6 @@
-const KStocksDay=require('./DayMovementStocks.json');
-const KStocksWeek=require('./WeekMovementStocks.json');
-const KStocksMonth=require('./MonthMovementStocks.json');
+const KStocksDay=require('./DayMovement.json');
+const KStocksWeek=require('./WeekMovement.json');
+const KStocksMonth=require('./MonthMovement.json');
 
 function listKLivePrice(){
     
@@ -44,7 +44,7 @@ function listKStocksDayHistory(){
     let stockValues=KStocksDay.values;
 
     let currentLivePrice={
-        "meta":{"symbol":"A"},
+        "meta":{"symbol":"K"},
         "values":[]
     }
 
@@ -53,14 +53,18 @@ function listKStocksDayHistory(){
         let time=timeStr.split(':');
         let hour=parseInt(time[0]);
         let minutes=parseInt(time[1]);
-        liveHour=14;
-        if(hour<liveHour){
-            currentLivePrice.values.push({datetime:stockValues[i].datetime,open:stockValues[i].open})
+
+        if(hour<=liveHour){
+            if(hour==liveHour){
+                if(minutes<=liveMinutes){
+                    currentLivePrice.values.push({datetime:stockValues[i].datetime,open:stockValues[i].open})
+                }
+            }
+            else{
+                currentLivePrice.values.push({datetime:stockValues[i].datetime,open:stockValues[i].open})
+            }
         }
     }
-    // console.log('currentLivePrice');
-    // console.log(currentLivePrice);
-    // console.log('----------------');
     return currentLivePrice;
 }
 function listKStocksWeekHistory(){

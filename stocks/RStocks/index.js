@@ -1,6 +1,6 @@
-const RStocksDay=require('./DayMovementStocks.json');
-const RStocksWeek=require('./WeekMovementStocks.json');
-const RStocksMonth=require('./MonthMovementStocks.json');
+const RStocksDay=require('./DayMovement.json');
+const RStocksWeek=require('./WeekMovement.json');
+const RStocksMonth=require('./MonthMovement.json');
 
 function listRLivePrice(){
     
@@ -44,7 +44,7 @@ function listRStocksDayHistory(){
     let stockValues=RStocksDay.values;
 
     let currentLivePrice={
-        "meta":{"symbol":"Q"},
+        "meta":{"symbol":"R"},
         "values":[]
     }
 
@@ -53,9 +53,16 @@ function listRStocksDayHistory(){
         let time=timeStr.split(':');
         let hour=parseInt(time[0]);
         let minutes=parseInt(time[1]);
-        liveHour=14;
-        if(hour<liveHour){
-            currentLivePrice.values.push({datetime:stockValues[i].datetime,open:stockValues[i].open})
+
+        if(hour<=liveHour){
+            if(hour==liveHour){
+                if(minutes<=liveMinutes){
+                    currentLivePrice.values.push({datetime:stockValues[i].datetime,open:stockValues[i].open})
+                }
+            }
+            else{
+                currentLivePrice.values.push({datetime:stockValues[i].datetime,open:stockValues[i].open})
+            }
         }
     }
     return currentLivePrice;

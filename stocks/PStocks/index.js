@@ -1,6 +1,6 @@
-const PStocksDay=require('./DayMovementStocks.json');
-const PStocksWeek=require('./WeekMovementStocks.json');
-const PStocksMonth=require('./MonthMovementStocks.json');
+const PStocksDay=require('./DayMovement.json');
+const PStocksWeek=require('./WeekMovement.json');
+const PStocksMonth=require('./MonthMovement.json');
 
 function listPLivePrice(){
     
@@ -44,7 +44,7 @@ function listPStocksDayHistory(){
     let stockValues=PStocksDay.values;
 
     let currentLivePrice={
-        "meta":{"symbol":"L"},
+        "meta":{"symbol":"P"},
         "values":[]
     }
 
@@ -53,14 +53,18 @@ function listPStocksDayHistory(){
         let time=timeStr.split(':');
         let hour=parseInt(time[0]);
         let minutes=parseInt(time[1]);
-        liveHour=14;
-        if(hour<liveHour){
-            currentLivePrice.values.push({datetime:stockValues[i].datetime,open:stockValues[i].open})
+
+        if(hour<=liveHour){
+            if(hour==liveHour){
+                if(minutes<=liveMinutes){
+                    currentLivePrice.values.push({datetime:stockValues[i].datetime,open:stockValues[i].open})
+                }
+            }
+            else{
+                currentLivePrice.values.push({datetime:stockValues[i].datetime,open:stockValues[i].open})
+            }
         }
     }
-    // console.log('currentLivePrice');
-    // console.log(currentLivePrice);
-    // console.log('----------------');
     return currentLivePrice;
 }
 function listPStocksWeekHistory(){

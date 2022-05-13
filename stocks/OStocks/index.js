@@ -1,6 +1,6 @@
-const OStocksDay=require('./DayMovementStocks.json');
-const OStocksWeek=require('./WeekMovementStocks.json');
-const OStocksMonth=require('./MonthMovementStocks.json');
+const OStocksDay=require('./DayMovement.json');
+const OStocksWeek=require('./WeekMovement.json');
+const OStocksMonth=require('./MonthMovement.json');
 
 function listOLivePrice(){
     
@@ -44,7 +44,7 @@ function listOStocksDayHistory(){
     let stockValues=OStocksDay.values;
 
     let currentLivePrice={
-        "meta":{"symbol":"L"},
+        "meta":{"symbol":"O"},
         "values":[]
     }
 
@@ -53,14 +53,18 @@ function listOStocksDayHistory(){
         let time=timeStr.split(':');
         let hour=parseInt(time[0]);
         let minutes=parseInt(time[1]);
-        liveHour=14;
-        if(hour<liveHour){
-            currentLivePrice.values.push({datetime:stockValues[i].datetime,open:stockValues[i].open})
+
+        if(hour<=liveHour){
+            if(hour==liveHour){
+                if(minutes<=liveMinutes){
+                    currentLivePrice.values.push({datetime:stockValues[i].datetime,open:stockValues[i].open})
+                }
+            }
+            else{
+                currentLivePrice.values.push({datetime:stockValues[i].datetime,open:stockValues[i].open})
+            }
         }
     }
-    // console.log('currentLivePrice');
-    // console.log(currentLivePrice);
-    // console.log('----------------');
     return currentLivePrice;
 }
 function listOStocksWeekHistory(){

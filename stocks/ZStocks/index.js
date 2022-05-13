@@ -1,6 +1,6 @@
-const ZStocksDay=require('./DayMovemenZStocks.json');
-const ZStocksWeek=require('./WeekMovemenZStocks.json');
-const ZStocksMonth=require('./MonthMovemenZStocks.json');
+const ZStocksDay=require('./DayMovement.json');
+const ZStocksWeek=require('./WeekMovement.json');
+const ZStocksMonth=require('./MonthMovement.json');
 
 function listZLivePrice(){
     
@@ -44,7 +44,7 @@ function listZStocksDayHistory(){
     let stockValues=ZStocksDay.values;
 
     let currentLivePrice={
-        "meta":{"symbol":"T"},
+        "meta":{"symbol":"Z"},
         "values":[]
     }
 
@@ -53,9 +53,16 @@ function listZStocksDayHistory(){
         let time=timeStr.split(':');
         let hour=parseInt(time[0]);
         let minutes=parseInt(time[1]);
-        liveHour=14;
-        if(hour<liveHour){
-            currentLivePrice.values.push({datetime:stockValues[i].datetime,open:stockValues[i].open})
+
+        if(hour<=liveHour){
+            if(hour==liveHour){
+                if(minutes<=liveMinutes){
+                    currentLivePrice.values.push({datetime:stockValues[i].datetime,open:stockValues[i].open})
+                }
+            }
+            else{
+                currentLivePrice.values.push({datetime:stockValues[i].datetime,open:stockValues[i].open})
+            }
         }
     }
     return currentLivePrice;

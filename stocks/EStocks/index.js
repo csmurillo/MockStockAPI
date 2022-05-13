@@ -44,7 +44,7 @@ function listEStocksDayHistory(){
     let stockValues=EStocksDay.values;
 
     let currentLivePrice={
-        "meta":{"symbol":"A"},
+        "meta":{"symbol":"E"},
         "values":[]
     }
 
@@ -53,14 +53,18 @@ function listEStocksDayHistory(){
         let time=timeStr.split(':');
         let hour=parseInt(time[0]);
         let minutes=parseInt(time[1]);
-        liveHour=14;
-        if(hour<liveHour){
-            currentLivePrice.values.push({datetime:stockValues[i].datetime,open:stockValues[i].open})
+
+        if(hour<=liveHour){
+            if(hour==liveHour){
+                if(minutes<=liveMinutes){
+                    currentLivePrice.values.push({datetime:stockValues[i].datetime,open:stockValues[i].open})
+                }
+            }
+            else{
+                currentLivePrice.values.push({datetime:stockValues[i].datetime,open:stockValues[i].open})
+            }
         }
     }
-    // console.log('currentLivePrice');
-    // console.log(currentLivePrice);
-    // console.log('----------------');
     return currentLivePrice;
 }
 function listEStocksWeekHistory(){

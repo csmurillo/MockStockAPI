@@ -1,6 +1,6 @@
-const VStocksDay=require('./DayMovemenVStocks.json');
-const VStocksWeek=require('./WeekMovemenVStocks.json');
-const VStocksMonth=require('./MonthMovemenVStocks.json');
+const VStocksDay=require('./DayMovement.json');
+const VStocksWeek=require('./WeekMovement.json');
+const VStocksMonth=require('./MonthMovement.json');
 
 function listVLivePrice(){
     
@@ -44,7 +44,7 @@ function listVStocksDayHistory(){
     let stockValues=VStocksDay.values;
 
     let currentLivePrice={
-        "meta":{"symbol":"T"},
+        "meta":{"symbol":"V"},
         "values":[]
     }
 
@@ -53,9 +53,16 @@ function listVStocksDayHistory(){
         let time=timeStr.split(':');
         let hour=parseInt(time[0]);
         let minutes=parseInt(time[1]);
-        liveHour=14;
-        if(hour<liveHour){
-            currentLivePrice.values.push({datetime:stockValues[i].datetime,open:stockValues[i].open})
+
+        if(hour<=liveHour){
+            if(hour==liveHour){
+                if(minutes<=liveMinutes){
+                    currentLivePrice.values.push({datetime:stockValues[i].datetime,open:stockValues[i].open})
+                }
+            }
+            else{
+                currentLivePrice.values.push({datetime:stockValues[i].datetime,open:stockValues[i].open})
+            }
         }
     }
     return currentLivePrice;

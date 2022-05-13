@@ -1,6 +1,6 @@
-const SStocksDay=require('./DayMovementStocks.json');
-const SStocksWeek=require('./WeekMovementStocks.json');
-const SStocksMonth=require('./MonthMovementStocks.json');
+const SStocksDay=require('./DayMovement.json');
+const SStocksWeek=require('./WeekMovement.json');
+const SStocksMonth=require('./MonthMovement.json');
 
 function listSLivePrice(){
     
@@ -44,7 +44,7 @@ function listSStocksDayHistory(){
     let stockValues=SStocksDay.values;
 
     let currentLivePrice={
-        "meta":{"symbol":"Q"},
+        "meta":{"symbol":"S"},
         "values":[]
     }
 
@@ -53,9 +53,16 @@ function listSStocksDayHistory(){
         let time=timeStr.split(':');
         let hour=parseInt(time[0]);
         let minutes=parseInt(time[1]);
-        liveHour=14;
-        if(hour<liveHour){
-            currentLivePrice.values.push({datetime:stockValues[i].datetime,open:stockValues[i].open})
+
+        if(hour<=liveHour){
+            if(hour==liveHour){
+                if(minutes<=liveMinutes){
+                    currentLivePrice.values.push({datetime:stockValues[i].datetime,open:stockValues[i].open})
+                }
+            }
+            else{
+                currentLivePrice.values.push({datetime:stockValues[i].datetime,open:stockValues[i].open})
+            }
         }
     }
     return currentLivePrice;

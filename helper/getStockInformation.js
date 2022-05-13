@@ -26,7 +26,6 @@ const stocksInfo=[
 ];
 
 function getStockInformation(stockSymbol){
-    console.log(stockSymbol);
     const RANDOM_NUMBER=Math.floor(Math.random()*3);
     return stocksInfo[RANDOM_NUMBER];
 }

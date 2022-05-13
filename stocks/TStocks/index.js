@@ -1,6 +1,6 @@
-const TStocksDay=require('./DayMovementStocks.json');
-const TStocksWeek=require('./WeekMovementStocks.json');
-const TStocksMonth=require('./MonthMovementStocks.json');
+const TStocksDay=require('./DayMovement.json');
+const TStocksWeek=require('./WeekMovement.json');
+const TStocksMonth=require('./MonthMovement.json');
 
 function listTLivePrice(){
     
@@ -53,9 +53,16 @@ function listTStocksDayHistory(){
         let time=timeStr.split(':');
         let hour=parseInt(time[0]);
         let minutes=parseInt(time[1]);
-        liveHour=14;
-        if(hour<liveHour){
-            currentLivePrice.values.push({datetime:stockValues[i].datetime,open:stockValues[i].open})
+
+        if(hour<=liveHour){
+            if(hour==liveHour){
+                if(minutes<=liveMinutes){
+                    currentLivePrice.values.push({datetime:stockValues[i].datetime,open:stockValues[i].open})
+                }
+            }
+            else{
+                currentLivePrice.values.push({datetime:stockValues[i].datetime,open:stockValues[i].open})
+            }
         }
     }
     return currentLivePrice;
