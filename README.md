@@ -5,7 +5,7 @@ Stock Market API(Mock)
 ## Table of contents
 
 - [Overview](#overview)
-- [HowToUse](#howtouse)
+- [How To Use](#howtouse)
 - [Author](#author)
 
 ## Overview
