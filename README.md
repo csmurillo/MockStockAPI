@@ -1,4 +1,4 @@
-# ImageCropper
+# MockStockAPI
 
 Stock Market API(Mock)
 
