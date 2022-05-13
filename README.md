@@ -19,7 +19,7 @@ Stock Market API(Mock)
     /stockWeekHistory  | meta{symbol},values{dateTime,open,close}
     /stockMonthHistory | meta{symbol},values{dateTime,open,close}
 
-    Note: /~~~?stock=ABC
+    Note: /~~~?stock=STOCK_SYMBOL
 
 ## Author
 
