@@ -32,6 +32,12 @@ function listRLivePrice(){
             livePriceData.changePricePercentage=parseFloat(livePriceData.changePrice/livePriceData.price).toFixed(4);
             break;
         }
+        else if(liveHour<9){
+            livePriceData.price=stockValues[i].open;
+            livePriceData.changePrice=(parseFloat(stockValues[i].open).toFixed(2)-parseFloat(stockValues[i+1].open).toFixed(2)).toFixed(2);
+            livePriceData.changePricePercentage=parseFloat(livePriceData.changePrice/livePriceData.price).toFixed(4);
+            break;
+        }
     }
     return livePriceData;
 }
@@ -63,6 +69,9 @@ function listRStocksDayHistory(){
             else{
                 currentLivePrice.values.push({datetime:stockValues[i].datetime,open:stockValues[i].open})
             }
+        }
+        else if(liveHour<9){
+            currentLivePrice.values.push({datetime:stockValues[i].datetime,open:stockValues[i].open})
         }
     }
     return currentLivePrice;

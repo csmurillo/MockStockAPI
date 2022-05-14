@@ -34,3 +34,11 @@ router.get('/stockMonthHistory',(req,res)=>{
 
 
 module.exports = router;
+
+
+
+
+
+
+
+
