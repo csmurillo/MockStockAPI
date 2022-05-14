@@ -4,7 +4,8 @@ const GStocksMonth=require('./MonthMovement.json');
 
 function listGLivePrice(){
     
-    let liveTime=new Date();
+    const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'America/New_York' });
+    const liveTime = new Date(newYorkDate);
     let liveHour=parseInt(liveTime.getHours());
     let liveMinutes=parseInt(liveTime.getMinutes());
     let stockValues=GStocksDay.values;
@@ -43,7 +44,9 @@ function listGLivePrice(){
 }
 
 function listGStocksDayHistory(){
-    let liveTime=new Date();
+    
+    const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'America/New_York' });
+    const liveTime = new Date(newYorkDate);
     let liveHour=parseInt(liveTime.getHours());
     let liveMinutes=parseInt(liveTime.getMinutes());
 

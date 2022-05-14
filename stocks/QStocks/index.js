@@ -4,7 +4,8 @@ const QStocksMonth=require('./MonthMovement.json');
 
 function listQLivePrice(){
     
-    let liveTime=new Date();
+    const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'America/New_York' });
+    const liveTime = new Date(newYorkDate);
     let liveHour=parseInt(liveTime.getHours());
     let liveMinutes=parseInt(liveTime.getMinutes());
     let stockValues=QStocksDay.values;
@@ -43,7 +44,8 @@ function listQLivePrice(){
 }
 
 function listQStocksDayHistory(){
-    let liveTime=new Date();
+    const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'America/New_York' });
+    const liveTime = new Date(newYorkDate);
     let liveHour=parseInt(liveTime.getHours());
     let liveMinutes=parseInt(liveTime.getMinutes());
 

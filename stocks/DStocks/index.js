@@ -4,7 +4,8 @@ const DStocksMonth=require('./MonthMovement.json');
 
 function listDLivePrice(){
     
-    let liveTime=new Date();
+    const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'America/New_York' });
+    const liveTime = new Date(newYorkDate);
     let liveHour=parseInt(liveTime.getHours());
     let liveMinutes=parseInt(liveTime.getMinutes());
     let stockValues=DStocksDay.values;
@@ -43,7 +44,9 @@ function listDLivePrice(){
 }
 
 function listDStocksDayHistory(){
-    let liveTime=new Date();
+    
+    const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'America/New_York' });
+    const liveTime = new Date(newYorkDate);
     let liveHour=parseInt(liveTime.getHours());
     let liveMinutes=parseInt(liveTime.getMinutes());
 
