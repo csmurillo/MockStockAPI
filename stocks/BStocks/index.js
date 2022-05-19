@@ -1,13 +1,18 @@
 const BStocksDay=require('./DayMovement.json');
 const BStocksWeek=require('./WeekMovement.json');
 const BStocksMonth=require('./MonthMovement.json');
+const { randomLivePrice }=require('../../helper/randomLivePrice');
 
 function listBLivePrice(){
-    
-    const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'America/New_York' });
+    // testing
+    const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'Asia/Karachi' });
+    // const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'Australia/Sydney' });
     const liveTime = new Date(newYorkDate);
+    // const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'America/New_York' });
+    // const liveTime = new Date(newYorkDate);
     let liveHour=parseInt(liveTime.getHours());
     let liveMinutes=parseInt(liveTime.getMinutes());
+    let liveSeconds=parseInt(liveTime.getSeconds());
     let stockValues=BStocksDay.values;
 
     let livePriceData={
@@ -20,37 +25,48 @@ function listBLivePrice(){
         let time=timeStr.split(':');
         let hour=parseInt(time[0]);
         let minutes=parseInt(time[1]);
+        let seconds=parseInt(time[2]);
 
-        if(liveHour==hour&&liveMinutes<minutes){
+
+        if(liveHour<9||liveHour==9 && liveMinutes<30||liveHour>16){
             livePriceData.price=stockValues[i].open;
-            livePriceData.changePrice=stockValues[i].open-stockValues[i+1].open;
+            livePriceData.changePrice=(parseFloat(stockValues[i].open).toFixed(2)-parseFloat(stockValues[i+1].open).toFixed(2)).toFixed(2);
+            livePriceData.changePricePercentage=parseFloat(livePriceData.changePrice/livePriceData.price).toFixed(4);
+            break;
+        }
+        // set actual live open price from day movement datetime
+        else if(liveHour==hour&&liveMinutes%5==0&&liveMinutes==minutes&&seconds==0&&liveSeconds<30){
+            livePriceData.price=stockValues[i].open;
+            livePriceData.changePrice=stockValues[i].open-stockValues[i-1].open;
             livePriceData.changePricePercentage=livePriceData.changePrice/livePriceData.price;
             break;
         }
-        else if(liveHour>hour){
-            livePriceData.price=stockValues[i].open;
-            livePriceData.changePrice=(parseFloat(stockValues[i].open).toFixed(2)-parseFloat(stockValues[i+1].open).toFixed(2)).toFixed(2);
-            livePriceData.changePricePercentage=parseFloat(livePriceData.changePrice/livePriceData.price).toFixed(4);
+        // set random live price for datetime that are between actual day movement datetimes
+        else if(liveHour==hour&&liveMinutes>=minutes){
+            let livePriceRandom=randomLivePrice(stockValues[i-1].open, stockValues[i].open);
+            livePriceData.price=livePriceRandom;
+            livePriceData.changePrice=stockValues[i].open-stockValues[i-1].open;
+            livePriceData.changePricePercentage=livePriceData.changePrice/livePriceData.price;
             break;
         }
-        else if(liveHour<9){
-            livePriceData.price=stockValues[i].open;
-            livePriceData.changePrice=(parseFloat(stockValues[i].open).toFixed(2)-parseFloat(stockValues[i+1].open).toFixed(2)).toFixed(2);
-            livePriceData.changePricePercentage=parseFloat(livePriceData.changePrice/livePriceData.price).toFixed(4);
-            break;
-        }
+        
     }
     return livePriceData;
 }
 
 function listBStocksDayHistory(){
     
-    const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'America/New_York' });
+    // testing
+    const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'Australia/Sydney' });
+    // const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'Japan' });
     const liveTime = new Date(newYorkDate);
+    // const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'America/New_York' });
+    // const liveTime = new Date(newYorkDate);
     let liveHour=parseInt(liveTime.getHours());
     let liveMinutes=parseInt(liveTime.getMinutes());
-
     let stockValues=BStocksDay.values;
+
+    console.log('hour'+liveHour+'minutes'+liveMinutes);
 
     let currentLivePrice={
         "meta":{"symbol":"B"},
@@ -73,7 +89,7 @@ function listBStocksDayHistory(){
                 currentLivePrice.values.push({datetime:stockValues[i].datetime,open:stockValues[i].open})
             }
         }
-        else if(liveHour<9){
+        else if(liveHour<9||liveHour==9 && liveMinutes<30){
             currentLivePrice.values.push({datetime:stockValues[i].datetime,open:stockValues[i].open})
         }
     }

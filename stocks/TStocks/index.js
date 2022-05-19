@@ -1,13 +1,18 @@
 const TStocksDay=require('./DayMovement.json');
 const TStocksWeek=require('./WeekMovement.json');
 const TStocksMonth=require('./MonthMovement.json');
+const { randomLivePrice }=require('../../helper/randomLivePrice');
 
 function listTLivePrice(){
-    
-    const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'America/New_York' });
+    // testing
+    const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'Asia/Karachi' });
+    // const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'Australia/Sydney' });
     const liveTime = new Date(newYorkDate);
+    // const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'America/New_York' });
+    // const liveTime = new Date(newYorkDate);
     let liveHour=parseInt(liveTime.getHours());
     let liveMinutes=parseInt(liveTime.getMinutes());
+    let liveSeconds=parseInt(liveTime.getSeconds());
     let stockValues=TStocksDay.values;
 
     let livePriceData={
@@ -20,23 +25,27 @@ function listTLivePrice(){
         let time=timeStr.split(':');
         let hour=parseInt(time[0]);
         let minutes=parseInt(time[1]);
+        let seconds=parseInt(time[2]);
 
-        if(liveHour==hour&&liveMinutes<minutes){
+        if(liveHour<9||liveHour==9 && liveMinutes<30||liveHour>16){
             livePriceData.price=stockValues[i].open;
-            livePriceData.changePrice=stockValues[i].open-stockValues[i+1].open;
+            livePriceData.changePrice=(parseFloat(stockValues[i].open).toFixed(2)-parseFloat(stockValues[i+1].open).toFixed(2)).toFixed(2);
+            livePriceData.changePricePercentage=parseFloat(livePriceData.changePrice/livePriceData.price).toFixed(4);
+            break;
+        }
+        // set actual live open price from day movement datetime
+        else if(liveHour==hour&&liveMinutes%5==0&&liveMinutes==minutes&&seconds==0&&liveSeconds<30){
+            livePriceData.price=stockValues[i].open;
+            livePriceData.changePrice=stockValues[i].open-stockValues[i-1].open;
             livePriceData.changePricePercentage=livePriceData.changePrice/livePriceData.price;
             break;
         }
-        else if(liveHour>hour){
-            livePriceData.price=stockValues[i].open;
-            livePriceData.changePrice=(parseFloat(stockValues[i].open).toFixed(2)-parseFloat(stockValues[i+1].open).toFixed(2)).toFixed(2);
-            livePriceData.changePricePercentage=parseFloat(livePriceData.changePrice/livePriceData.price).toFixed(4);
-            break;
-        }
-        else if(liveHour<9){
-            livePriceData.price=stockValues[i].open;
-            livePriceData.changePrice=(parseFloat(stockValues[i].open).toFixed(2)-parseFloat(stockValues[i+1].open).toFixed(2)).toFixed(2);
-            livePriceData.changePricePercentage=parseFloat(livePriceData.changePrice/livePriceData.price).toFixed(4);
+        // set random live price for datetime that are between actual day movement datetimes
+        else if(liveHour==hour&&liveMinutes>=minutes){
+            let livePriceRandom=randomLivePrice(stockValues[i-1].open, stockValues[i].open);
+            livePriceData.price=livePriceRandom;
+            livePriceData.changePrice=stockValues[i].open-stockValues[i-1].open;
+            livePriceData.changePricePercentage=livePriceData.changePrice/livePriceData.price;
             break;
         }
     }
@@ -44,39 +53,44 @@ function listTLivePrice(){
 }
 
 function listTStocksDayHistory(){
-    const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'America/New_York' });
-    const liveTime = new Date(newYorkDate);
-    let liveHour=parseInt(liveTime.getHours());
-    let liveMinutes=parseInt(liveTime.getMinutes());
+       // testing
+   const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'Australia/Sydney' });
+   // const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'Japan' });
+   const liveTime = new Date(newYorkDate);
+   // const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'America/New_York' });
+   // const liveTime = new Date(newYorkDate);
+   let liveHour=parseInt(liveTime.getHours());
+   let liveMinutes=parseInt(liveTime.getMinutes());
+   let stockValues=TStocksDay.values;
 
-    let stockValues=TStocksDay.values;
+   console.log('hour'+liveHour+'minutes'+liveMinutes);
 
-    let currentLivePrice={
-        "meta":{"symbol":"T"},
-        "values":[]
-    }
+   let currentLivePrice={
+       "meta":{"symbol":"T"},
+       "values":[]
+   }
 
-    for(let i=0; i<stockValues.length;i++){
-        let timeStr=stockValues[i].datetime.split(' ')[1];
-        let time=timeStr.split(':');
-        let hour=parseInt(time[0]);
-        let minutes=parseInt(time[1]);
+   for(let i=0; i<stockValues.length;i++){
+       let timeStr=stockValues[i].datetime.split(' ')[1];
+       let time=timeStr.split(':');
+       let hour=parseInt(time[0]);
+       let minutes=parseInt(time[1]);
 
-        if(hour<=liveHour){
-            if(hour==liveHour){
-                if(minutes<=liveMinutes){
-                    currentLivePrice.values.push({datetime:stockValues[i].datetime,open:stockValues[i].open})
-                }
-            }
-            else{
-                currentLivePrice.values.push({datetime:stockValues[i].datetime,open:stockValues[i].open})
-            }
-        }
-        else if(liveHour<9){
-            currentLivePrice.values.push({datetime:stockValues[i].datetime,open:stockValues[i].open})
-        }
-    }
-    return currentLivePrice;
+       if(hour<=liveHour){
+           if(hour==liveHour){
+               if(minutes<=liveMinutes){
+                   currentLivePrice.values.push({datetime:stockValues[i].datetime,open:stockValues[i].open})
+               }
+           }
+           else{
+               currentLivePrice.values.push({datetime:stockValues[i].datetime,open:stockValues[i].open})
+           }
+       }
+       else if(liveHour<9||liveHour==9 && liveMinutes<30){
+           currentLivePrice.values.push({datetime:stockValues[i].datetime,open:stockValues[i].open})
+       }
+   }
+   return currentLivePrice;
 }
 function listTStocksWeekHistory(){
     return TStocksWeek;
