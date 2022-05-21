@@ -5,8 +5,8 @@ const { randomLivePrice }=require('../../helper/randomLivePrice');
 
 function listLLivePrice(){
     // testing
-    const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'Asia/Karachi' });
-    // const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'Australia/Sydney' });
+    const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'Pacific/Auckland' });
+    // const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'Pacific/Auckland' });
     const liveTime = new Date(newYorkDate);
     // const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'America/New_York' });
     // const liveTime = new Date(newYorkDate);
@@ -56,7 +56,7 @@ function listLLivePrice(){
 
 function listLStocksDayHistory(){
     // testing
-    const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'Australia/Sydney' });
+    const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'Pacific/Auckland' });
     // const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'Japan' });
     const liveTime = new Date(newYorkDate);
     // const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'America/New_York' });
@@ -65,7 +65,9 @@ function listLStocksDayHistory(){
     let liveMinutes=parseInt(liveTime.getMinutes());
     let stockValues=LStocksDay.values;
 
+    console.log('current time:');
     console.log('hour'+liveHour+'minutes'+liveMinutes);
+    console.log('-----------------------------------');
 
     let currentLivePrice={
         "meta":{"symbol":"L"},
@@ -92,6 +94,7 @@ function listLStocksDayHistory(){
             currentLivePrice.values.push({datetime:stockValues[i].datetime,open:stockValues[i].open})
         }
     }
+
     return currentLivePrice;
 }
 function listLStocksWeekHistory(){

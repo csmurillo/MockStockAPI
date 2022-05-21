@@ -5,8 +5,8 @@ const { randomLivePrice }=require('../../helper/randomLivePrice');
 
 function listALivePrice(){
     // testing
-    const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'Asia/Karachi' });
-    // const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'Australia/Sydney' });
+    const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'Pacific/Auckland' });
+    // const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'Pacific/Auckland' });
     const liveTime = new Date(newYorkDate);
     // const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'America/New_York' });
     // const liveTime = new Date(newYorkDate);
@@ -36,11 +36,11 @@ function listALivePrice(){
             break;
         }
         // set actual live open price from day movement datetime
-        else if(liveHour==hour&&liveMinutes%5==0&&liveMinutes==minutes&&seconds==0&&liveSeconds<30){
+        else if(liveHour==hour&&liveMinutes%5==0&&liveMinutes==minutes&&seconds==0&&liveSeconds<15){
             // console.log('::::::::::::::::::exact price::::::::::::::::::');
             livePriceData.price=stockValues[i].open;
-            livePriceData.changePrice=stockValues[i].open-stockValues[i-1].open;
-            livePriceData.changePricePercentage=livePriceData.changePrice/livePriceData.price;
+            livePriceData.changePrice=parseFloat(stockValues[i].open-stockValues[i-1].open).toFixed(2);
+            livePriceData.changePricePercentage=parseFloat(livePriceData.changePrice/livePriceData.price).toFixed(3);
             // console.log('price:'+livePriceData.price);
             // console.log('-----------------------------------------------');
             break;
@@ -56,8 +56,8 @@ function listALivePrice(){
 
             livePriceData.price=livePriceRandom;
             // livePriceData.price=stockValues[i].open;
-            livePriceData.changePrice=stockValues[i].open-stockValues[i-1].open;
-            livePriceData.changePricePercentage=livePriceData.changePrice/livePriceData.price;
+            livePriceData.changePrice=parseFloat(stockValues[i].open-livePriceRandom).toFixed(3);
+            livePriceData.changePricePercentage=parseFloat(livePriceData.changePrice/livePriceData.price).toFixed(4);
             break;
         }
         
@@ -67,7 +67,7 @@ function listALivePrice(){
 
 function listAStocksDayHistory(){
     // testing
-    const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'Australia/Sydney' });
+    const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'Pacific/Auckland' });
     // const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'Japan' });
     const liveTime = new Date(newYorkDate);
     // const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'America/New_York' });
@@ -99,11 +99,29 @@ function listAStocksDayHistory(){
                 currentLivePrice.values.push({datetime:stockValues[i].datetime,open:stockValues[i].open})
             }
         }
-        else if(liveHour<9||liveHour==9 && liveMinutes<30){
+        else if(liveHour<9||liveHour==9 && liveMinutes<30||liveHour>16){
             currentLivePrice.values.push({datetime:stockValues[i].datetime,open:stockValues[i].open})
         }
     }
-    return currentLivePrice;
+
+    if(liveTime.getDate()!=0||liveTime.getDate()!=6){
+        // for debuggin purposes
+        // timer = setTimer(stockSymbol);
+        if(liveHour >= 9 && liveHour <= 16 ){
+            // special case under 9:30 o'clock & everything over 4pm
+            if((liveHour==9&&liveMinutes<30)||(liveHour==16&&liveMinutes>=0)){
+                console.log('not valid');
+                return null;
+            }
+            else{
+                return currentLivePrice;
+            }
+        }
+        else{
+            console.log('too late');
+            return null;
+        }
+    }
 }
 function listAStocksWeekHistory(){
     return AStocksWeek;

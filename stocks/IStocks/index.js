@@ -5,8 +5,8 @@ const { randomLivePrice }=require('../../helper/randomLivePrice');
 
 function listILivePrice(){
      // testing
-     const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'Asia/Karachi' });
-     // const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'Australia/Sydney' });
+     const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'Pacific/Auckland' });
+     // const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'Pacific/Auckland' });
      const liveTime = new Date(newYorkDate);
      // const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'America/New_York' });
      // const liveTime = new Date(newYorkDate);
@@ -56,7 +56,7 @@ function listILivePrice(){
 
 function listIStocksDayHistory(){
     // testing
-    const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'Australia/Sydney' });
+    const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'Pacific/Auckland' });
     // const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'Japan' });
     const liveTime = new Date(newYorkDate);
     // const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'America/New_York' });
