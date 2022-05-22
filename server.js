@@ -18,7 +18,7 @@ app.listen(PORT,()=>{
 
 // run code from monday to friday at 12am
 const rule = new schedule.RecurrenceRule();
-rule.dayOfWeek = [0, new schedule.Range(0, 7)];
+rule.dayOfWeek = [0, new schedule.Range(0, 5)];
 rule.hour = 0;
 rule.minute = 0;
 rule.tz='America/New_York';
