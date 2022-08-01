@@ -5,8 +5,8 @@ const { randomLivePrice }=require('../../helper/randomLivePrice');
 
 function listALivePrice(){
     // testing
-    const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'Asia/Hong_Kong' });
-    // const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'Asia/Hong_Kong' });
+    const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'Pacific/Auckland' });
+    // const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'Pacific/Auckland' });
     const liveTime = new Date(newYorkDate);
     // const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'America/New_York' });
     // const liveTime = new Date(newYorkDate);
@@ -67,7 +67,7 @@ function listALivePrice(){
 
 function listAStocksDayHistory(){
     // testing
-    const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'Asia/Hong_Kong' });
+    const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'Pacific/Auckland' });
     // const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'Japan' });
     const liveTime = new Date(newYorkDate);
     // const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'America/New_York' });
@@ -76,7 +76,7 @@ function listAStocksDayHistory(){
     let liveMinutes=parseInt(liveTime.getMinutes());
     let stockValues=AStocksDay.values;
 
-    console.log('hour'+liveHour+'minutes'+liveMinutes);
+    // console.log('hour'+liveHour+'minutes'+liveMinutes);
 
     let currentLivePrice={
         "meta":{"symbol":"A"},
@@ -91,7 +91,12 @@ function listAStocksDayHistory(){
 
         if(hour<=liveHour){
             if(hour==liveHour){
-                if(minutes<=liveMinutes){
+                if(minutes!=0){
+                    if(minutes<liveMinutes){
+                        currentLivePrice.values.push({datetime:stockValues[i].datetime,open:stockValues[i].open})
+                    }
+                }
+                else{
                     currentLivePrice.values.push({datetime:stockValues[i].datetime,open:stockValues[i].open})
                 }
             }
@@ -99,12 +104,22 @@ function listAStocksDayHistory(){
                 currentLivePrice.values.push({datetime:stockValues[i].datetime,open:stockValues[i].open})
             }
         }
+        // if(hour<=liveHour){
+        //     if(hour==liveHour){
+        //         if(minutes<liveMinutes){
+        //             currentLivePrice.values.push({datetime:stockValues[i].datetime,open:stockValues[i].open})
+        //         }
+        //     }
+        //     else{
+        //         currentLivePrice.values.push({datetime:stockValues[i].datetime,open:stockValues[i].open})
+        //     }
+        // }
         else if(liveHour<9||liveHour==9 && liveMinutes<30||liveHour>16){
             currentLivePrice.values.push({datetime:stockValues[i].datetime,open:stockValues[i].open})
         }
     }
 
-    if(liveTime.getDate()!=0||liveTime.getDate()!=6){
+    // if(liveTime.getDate()!=0||liveTime.getDate()!=6){
         // for debuggin purposes
         // timer = setTimer(stockSymbol);
         if(liveHour >= 9 && liveHour <= 16 ){
@@ -121,7 +136,7 @@ function listAStocksDayHistory(){
             console.log('too late');
             return null;
         }
-    }
+    // }
 }
 function listAStocksWeekHistory(){
     return AStocksWeek;
