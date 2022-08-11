@@ -64,8 +64,8 @@ function listALivePrice(){
     }
     return livePriceData;
 }
-
 function listAStocksDayHistory(){
+    
     // testing
     const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'Singapore' });
     // const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'Japan' });
@@ -76,7 +76,7 @@ function listAStocksDayHistory(){
     let liveMinutes=parseInt(liveTime.getMinutes());
     let stockValues=AStocksDay.values;
 
-    // console.log('hour'+liveHour+'minutes'+liveMinutes);
+    console.log('hour'+liveHour+'minutes'+liveMinutes);
 
     let currentLivePrice={
         "meta":{"symbol":"A"},
@@ -91,12 +91,7 @@ function listAStocksDayHistory(){
 
         if(hour<=liveHour){
             if(hour==liveHour){
-                if(minutes!=0){
-                    if(minutes<liveMinutes){
-                        currentLivePrice.values.push({datetime:stockValues[i].datetime,open:stockValues[i].open})
-                    }
-                }
-                else{
+                if(minutes<=liveMinutes){
                     currentLivePrice.values.push({datetime:stockValues[i].datetime,open:stockValues[i].open})
                 }
             }
@@ -104,39 +99,11 @@ function listAStocksDayHistory(){
                 currentLivePrice.values.push({datetime:stockValues[i].datetime,open:stockValues[i].open})
             }
         }
-        // if(hour<=liveHour){
-        //     if(hour==liveHour){
-        //         if(minutes<liveMinutes){
-        //             currentLivePrice.values.push({datetime:stockValues[i].datetime,open:stockValues[i].open})
-        //         }
-        //     }
-        //     else{
-        //         currentLivePrice.values.push({datetime:stockValues[i].datetime,open:stockValues[i].open})
-        //     }
-        // }
-        else if(liveHour<9||liveHour==9 && liveMinutes<30||liveHour>16){
+        else if(liveHour<9||liveHour==9 && liveMinutes<30){
             currentLivePrice.values.push({datetime:stockValues[i].datetime,open:stockValues[i].open})
         }
     }
-
-    // if(liveTime.getDate()!=0||liveTime.getDate()!=6){
-        // for debuggin purposes
-        // timer = setTimer(stockSymbol);
-        if(liveHour >= 9 && liveHour <= 16 ){
-            // special case under 9:30 o'clock & everything over 4pm
-            if((liveHour==9&&liveMinutes<30)||(liveHour==16&&liveMinutes>=0)){
-                console.log('not valid');
-                return null;
-            }
-            else{
-                return currentLivePrice;
-            }
-        }
-        else{
-            console.log('too late');
-            return null;
-        }
-    // }
+    return currentLivePrice;
 }
 function listAStocksWeekHistory(){
     return AStocksWeek;
