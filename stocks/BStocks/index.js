@@ -27,7 +27,6 @@ function listBLivePrice(){
         let minutes=parseInt(time[1]);
         let seconds=parseInt(time[2]);
 
-
         if(liveHour<9||liveHour==9 && liveMinutes<30||liveHour>16){
             livePriceData.price=stockValues[i].open;
             livePriceData.changePrice=(parseFloat(stockValues[i].open).toFixed(2)-parseFloat(stockValues[i+1].open).toFixed(2)).toFixed(2);
