@@ -5,10 +5,10 @@ const { randomLivePrice }=require('../../helper/randomLivePrice');
 
 function listYLivePrice(){
     // testing
-    const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'Asia/Singapore' });
-    // const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'Asia/Singapore' });
+    const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'Pacific/Honolulu' });
+    // const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'Pacific/Honolulu' });
     const liveTime = new Date(newYorkDate);
-    // const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'Asia/Singapore' });
+    // const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'Pacific/Honolulu' });
     // const liveTime = new Date(newYorkDate);
     let liveHour=parseInt(liveTime.getHours());
     let liveMinutes=parseInt(liveTime.getMinutes());
@@ -55,10 +55,10 @@ function listYLivePrice(){
 
 function listYStocksDayHistory(){
      // testing
-     const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'Asia/Singapore' });
+     const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'Pacific/Honolulu' });
      // const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'Japan' });
      const liveTime = new Date(newYorkDate);
-     // const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'Asia/Singapore' });
+     // const newYorkDate = new Date().toLocaleString('en-US', { timeZone: 'Pacific/Honolulu' });
      // const liveTime = new Date(newYorkDate);
      let liveHour=parseInt(liveTime.getHours());
      let liveMinutes=parseInt(liveTime.getMinutes());
