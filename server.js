@@ -21,7 +21,7 @@ const rule = new schedule.RecurrenceRule();
 rule.dayOfWeek = [0, new schedule.Range(0, 5)];
 rule.hour = 0;
 rule.minute = 0;
-rule.tz='Pacific/Auckland' });
+rule.tz='Asia/Seoul' });
 ';
 
 
