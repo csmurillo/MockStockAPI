@@ -21,8 +21,7 @@ const rule = new schedule.RecurrenceRule();
 rule.dayOfWeek = [0, new schedule.Range(0, 5)];
 rule.hour = 0;
 rule.minute = 0;
-rule.tz='Asia/Seoul' });
-';
+rule.tz='Asia/Seoul';
 
 
 const job = schedule.scheduleJob(rule, function(){
